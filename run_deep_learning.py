@@ -25,8 +25,17 @@ try:
     import torch.optim as optim
     from torch.utils.data import DataLoader, TensorDataset
     TORCH_AVAILABLE = True
-    DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"PyTorch available. Using device: {DEVICE}")
+    # Check for XPU first, then CUDA, then CPU
+    if hasattr(torch, 'xpu') and torch.xpu.is_available():
+        DEVICE = torch.device('xpu')
+        device_name = torch.xpu.get_device_name(0)
+        print(f"PyTorch available. Using Intel XPU: {device_name}")
+    elif torch.cuda.is_available():
+        DEVICE = torch.device('cuda')
+        print(f"PyTorch available. Using CUDA GPU")
+    else:
+        DEVICE = torch.device('cpu')
+        print(f"PyTorch available. Using CPU")
 except ImportError:
     TORCH_AVAILABLE = False
     print("PyTorch not available. Please install: pip install torch")

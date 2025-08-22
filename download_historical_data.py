@@ -28,7 +28,7 @@ async def download_long_term_data():
     # Configuration
     symbols = ['BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'ADA/USDT', 'SOL/USDT']
     timeframes = ['1m', '5m', '15m', '1h', '4h', '1d']  # Multiple timeframes
-    days_back = 400  # ~13 months of data
+    days_back = 730  # 2 years of data
     
     print(f"\nConfiguration:")
     print(f"  Symbols: {', '.join(symbols)}")
