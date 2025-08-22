@@ -15,11 +15,12 @@ database:
 
 # Redis Cache Configuration
 cache:
-  host: "localhost"
+  host: "172.72.72.2"
   port: 6379
   db: 0
   decode_responses: true
   max_connections: 50
+  password: null  # Add password if required
 
 # API Server Configuration
 api:
