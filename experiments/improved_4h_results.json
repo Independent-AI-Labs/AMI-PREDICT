@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-08-22T16:08:12.609899",
+  "timeframe": "4H",
+  "period": "2023 Full Year",
+  "results": {
+    "total_return": -2.6906550060905863,
+    "final_equity": 97309.34499390941,
+    "num_trades": 2,
+    "win_rate": 0.0,
+    "profit_factor": 0.0,
+    "sharpe_ratio": -1.8937393901801092,
+    "max_drawdown": -2.6906550060905863,
+    "buy_hold_return": 155.5971161473875,
+    "alpha": -158.2877711534781
+  }
+}

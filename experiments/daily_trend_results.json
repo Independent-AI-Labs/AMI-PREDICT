@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-08-22T16:10:30.306074",
+  "strategy": "Daily Trend Following",
+  "period": "2022-2023",
+  "results": {
+    "final_equity": "100000",
+    "total_return": 0.0,
+    "buy_hold_return": -10.597263252258514,
+    "alpha": 10.597263252258514,
+    "num_trades": 0,
+    "win_rate": 0,
+    "avg_win": 0,
+    "avg_loss": 0,
+    "profit_factor": 0,
+    "sharpe_ratio": 0,
+    "max_drawdown": 0.0,
+    "avg_holding_days": 0,
+    "exit_reasons": {}
+  }
+}
