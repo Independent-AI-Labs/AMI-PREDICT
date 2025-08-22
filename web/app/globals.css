@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-crypto-darker text-gray-100;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl;
+  }
+  
+  .status-indicator {
+    @apply w-2 h-2 rounded-full animate-pulse;
+  }
+  
+  .metric-card {
+    @apply glass-panel p-4 hover:bg-white/10 transition-colors;
+  }
+}

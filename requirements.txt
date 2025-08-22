@@ -1,0 +1,64 @@
+# Core Dependencies
+numpy
+pandas
+python-dotenv
+pyyaml
+click
+
+# Database & Storage
+sqlalchemy
+redis
+pyarrow
+fastparquet
+
+# Web Framework & API
+fastapi
+uvicorn
+websockets
+python-socketio
+aiohttp
+requests
+httpx
+
+# Machine Learning
+scikit-learn
+lightgbm
+catboost
+xgboost
+hmmlearn
+
+# Technical Analysis
+ta
+pandas-ta
+
+# Crypto & Trading
+ccxt
+python-binance
+websocket-client
+
+# Data Visualization & Monitoring
+plotly
+dash
+prometheus-client
+
+# Testing
+pytest
+pytest-asyncio
+pytest-cov
+pytest-mock
+
+# Development Tools
+black
+flake8
+mypy
+pre-commit
+
+# Logging & Monitoring
+loguru
+python-json-logger
+
+# Utilities
+schedule
+tqdm
+tabulate
+colorama

@@ -1,0 +1,192 @@
+# CryptoBot Pro Main Configuration
+system:
+  name: "CryptoBot Pro"
+  version: "0.1.0"
+  mode: "simulation"  # simulation, paper, live
+  log_level: "INFO"
+  timezone: "UTC"
+
+# Database Configuration
+database:
+  type: "sqlite"
+  path: "data/cryptobot.db"
+  pool_size: 10
+  echo: false
+
+# Redis Cache Configuration
+cache:
+  host: "localhost"
+  port: 6379
+  db: 0
+  decode_responses: true
+  max_connections: 50
+
+# API Server Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins: ["http://localhost:3000"]
+  api_key_header: "X-API-Key"
+
+# Exchange Configuration
+exchanges:
+  binance:
+    api_key: "${BINANCE_API_KEY}"
+    api_secret: "${BINANCE_API_SECRET}"
+    testnet: false  # Set to false for real data
+    rate_limit: 1200
+  
+  coinbase:
+    api_key: "${COINBASE_API_KEY}"
+    api_secret: "${COINBASE_API_SECRET}"
+    testnet: true
+    rate_limit: 10
+
+# Data Provider Configuration
+data_providers:
+  default: binance
+  binance:
+    enabled: true
+    api_key: "${BINANCE_API_KEY}"
+    api_secret: "${BINANCE_API_SECRET}"
+    rate_limit: true
+    max_retries: 3
+    historical_data_path: "data/historical/"
+
+# Trading Configuration
+trading:
+  pairs:
+    - "BTC/USDT"
+    - "ETH/USDT"
+    - "BNB/USDT"
+    - "ADA/USDT"
+    - "SOL/USDT"
+  
+  timeframes:
+    - "1m"
+    - "5m"
+    - "15m"
+    - "1h"
+  
+  initial_balance: 10000.0
+  stake_per_trade: 0.02  # 2% per trade
+  max_open_trades: 5
+  
+# Risk Management
+risk:
+  max_drawdown: 0.10  # 10%
+  daily_loss_limit: 0.03  # 3%
+  portfolio_heat: 0.15  # 15%
+  correlation_limit: 0.7
+  stop_loss: 0.02  # 2%
+  take_profit: 0.05  # 5%
+  trailing_stop: true
+  trailing_stop_distance: 0.01
+
+# Machine Learning Configuration
+ml:
+  models:
+    lightgbm:
+      enabled: true
+      n_estimators: 200
+      learning_rate: 0.1
+      max_depth: 8
+      num_leaves: 31
+      feature_fraction: 0.8
+      bagging_fraction: 0.8
+      
+    catboost:
+      enabled: true
+      iterations: 300
+      learning_rate: 0.05
+      depth: 6
+      l2_leaf_reg: 3
+      
+    lstm:
+      enabled: true
+      units: [128, 64, 32]
+      dropout: 0.3
+      sequence_length: 20
+      batch_size: 32
+      
+    random_forest:
+      enabled: true
+      n_estimators: 150
+      max_depth: 10
+      min_samples_split: 5
+      
+  ensemble:
+    method: "stacking"
+    meta_learner: "logistic_regression"
+    cv_folds: 5
+    
+  regime_detection:
+    enabled: true
+    n_states: 4
+    states: ["trending_bull", "trending_bear", "sideways", "high_volatility"]
+    
+  training:
+    train_split: 0.8
+    validation_split: 0.1
+    test_split: 0.1
+    lookback_days: 90
+    retrain_frequency: "daily"
+    
+# Feature Engineering
+features:
+  technical_indicators:
+    moving_averages: [5, 10, 20, 50, 100, 200]
+    rsi_periods: [14, 21]
+    macd_params: [12, 26, 9]
+    bollinger_bands: [20, 2]
+    atr_period: 14
+    
+  volume_indicators:
+    - "obv"
+    - "vwap"
+    - "volume_sma"
+    
+  custom_features:
+    - "price_change_percentage"
+    - "volume_ratio"
+    - "high_low_ratio"
+    - "close_to_sma_ratio"
+    
+# Simulation Configuration
+simulation:
+  latency_ms: 50
+  slippage_percent: 0.1
+  market_impact: true
+  order_book_depth: 10
+  
+# Monitoring & Alerts
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    
+  grafana:
+    enabled: true
+    port: 3001
+    
+  alerts:
+    max_drawdown_exceeded:
+      threshold: 0.08
+      action: "notify"
+      
+    model_accuracy_low:
+      threshold: 0.50
+      action: "retrain"
+      
+    latency_high:
+      threshold: 100
+      action: "notify"
+      
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "json"
+  file: "logs/cryptobot.log"
+  max_size: "100MB"
+  max_age: 30
+  compress: true
