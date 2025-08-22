@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-08-22T15:34:31.511888",
+  "model": "AttentionTCN",
+  "backtest_period": "2024-01-01 to 2024-03-31",
+  "metrics": {
+    "total_return": 0.0,
+    "final_equity": 
