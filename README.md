@@ -50,6 +50,41 @@ Run examples:
 python docs/quickstart_example.py
 ```
 
+## Benchmark Results (2023)
+
+- Source: `experiments/backtest_AttentionTCN_*.json` (Q1–Q4 2023)
+- Strategy: AttentionTCN model signals backtested on BTC/USDT minute data
+
+Highlights:
+- Consistently negative total returns across quarters; low win rates
+- Confirms disconnect between classification accuracy and tradable signals
+
+Pictures:
+
+- Equity curves (sampled per quarter):
+
+  ![Equity Curves](docs/assets/equity_curve_quarters.svg)
+
+- Total return by quarter:
+
+  ![Total Return by Quarter](docs/assets/total_return_quarters.svg)
+
+- Win rate by quarter:
+
+  ![Win Rate by Quarter](docs/assets/winrate_quarters.svg)
+
+How to regenerate charts
+------------------------
+
+- Ensure experiment JSONs exist under `experiments/`.
+- Run the renderer (no external dependencies):
+
+```bash
+uv run python scripts/render_bench_charts.py
+```
+
+Charts are written to `docs/assets/`.
+
 ## Documentation
 
 - docs/index.md — Overview
@@ -65,4 +100,3 @@ Deep learning models can leverage Intel XPU. See `docs/guides/acceleration-xpu.m
 ## License
 
 Copyright Independent AI Labs
-
