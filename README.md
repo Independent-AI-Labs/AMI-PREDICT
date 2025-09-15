@@ -50,29 +50,18 @@ Run examples:
 python docs/quickstart_example.py
 ```
 
-## Model Training & Verification
+## Model Training & Verification (Numbers)
 
-- Source: `experiments/all_results.json` and per-experiment `*/experiment.json`
-- Focus: Training/validation performance (no backtesting visuals)
+- Best model: AttentionTCN_improvement (AttentionTCN)
+- Device: XPU
+- Best validation accuracy: 75.47%
+- Best validation loss: 0.0536
+- Total epochs: 10
+- Average epoch time: 17.7s
 
-Pictures:
-
-- Learning curves (best model):
-
-  ![Learning Curves](docs/assets/learning_curves_best.svg)
-
-- Best validation accuracy across experiments:
-
-  ![Validation Accuracy Ranking](docs/assets/val_accuracy_ranking.svg)
-
-How to regenerate training charts
----------------------------------
-
-```bash
-uv run python scripts/render_training_charts.py
-```
-
-Charts are written to `docs/assets/`.
+Source files:
+- experiments/best_model.json — canonical best run snapshot
+- experiments/all_results.json — full experiment list and summaries
 
 ## Documentation
 
