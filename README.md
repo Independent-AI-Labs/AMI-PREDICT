@@ -50,37 +50,26 @@ Run examples:
 python docs/quickstart_example.py
 ```
 
-## Benchmark Results (2023)
+## Model Training & Verification
 
-- Source: `experiments/backtest_AttentionTCN_*.json` (Q1–Q4 2023)
-- Strategy: AttentionTCN model signals backtested on BTC/USDT minute data
-
-Highlights:
-- Consistently negative total returns across quarters; low win rates
-- Confirms disconnect between classification accuracy and tradable signals
+- Source: `experiments/all_results.json` and per-experiment `*/experiment.json`
+- Focus: Training/validation performance (no backtesting visuals)
 
 Pictures:
 
-- Equity curves (sampled per quarter):
+- Learning curves (best model):
 
-  ![Equity Curves](docs/assets/equity_curve_quarters.svg)
+  ![Learning Curves](docs/assets/learning_curves_best.svg)
 
-- Total return by quarter:
+- Best validation accuracy across experiments:
 
-  ![Total Return by Quarter](docs/assets/total_return_quarters.svg)
+  ![Validation Accuracy Ranking](docs/assets/val_accuracy_ranking.svg)
 
-- Win rate by quarter:
-
-  ![Win Rate by Quarter](docs/assets/winrate_quarters.svg)
-
-How to regenerate charts
-------------------------
-
-- Ensure experiment JSONs exist under `experiments/`.
-- Run the renderer (no external dependencies):
+How to regenerate training charts
+---------------------------------
 
 ```bash
-uv run python scripts/render_bench_charts.py
+uv run python scripts/render_training_charts.py
 ```
 
 Charts are written to `docs/assets/`.
