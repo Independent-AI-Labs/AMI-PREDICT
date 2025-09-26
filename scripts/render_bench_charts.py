@@ -14,8 +14,6 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple
-
 
 BASE = Path(__file__).resolve().parents[1]
 EXP_DIR = BASE / "experiments"
@@ -27,22 +25,22 @@ class QuarterResult:
     name: str
     total_return: float
     win_rate: float
-    equity_samples: List[float]
+    equity_samples: list[float]
 
 
-def load_quarter_results() -> List[QuarterResult]:
+def load_quarter_results() -> list[QuarterResult]:
     mapping = {
         "Q1 2023": "backtest_AttentionTCN_20250822_153701.json",
         "Q2 2023": "backtest_AttentionTCN_20250822_153724.json",
         "Q3 2023": "backtest_AttentionTCN_20250822_153747.json",
         "Q4 2023": "backtest_AttentionTCN_20250822_153810.json",
     }
-    results: List[QuarterResult] = []
+    results: list[QuarterResult] = []
     for qname, fname in mapping.items():
         fpath = EXP_DIR / fname
         if not fpath.exists():
             raise FileNotFoundError(f"Missing experiment file: {fpath}")
-        with open(fpath, "r") as f:
+        with open(fpath) as f:
             data = json.load(f)
         metrics = data.get("metrics", {})
         results.append(
@@ -56,14 +54,14 @@ def load_quarter_results() -> List[QuarterResult]:
     return results
 
 
-def _scale_points(values: List[float], width: int, height: int, pad: int) -> List[Tuple[float, float]]:
+def _scale_points(values: list[float], width: int, height: int, pad: int) -> list[tuple[float, float]]:
     if not values:
         return []
     vmin, vmax = min(values), max(values)
     # Avoid div by zero
     rng = (vmax - vmin) or 1e-9
     n = len(values)
-    pts: List[Tuple[float, float]] = []
+    pts: list[tuple[float, float]] = []
     for i, v in enumerate(values):
         x = pad + (i / max(1, n - 1)) * (width - 2 * pad)
         # invert y for SVG (0 at top)
@@ -88,7 +86,7 @@ def _axis_and_title(title: str, width: int, height: int, pad: int) -> str:
     return "\n".join(s) + "\n"
 
 
-def render_equity_curves(quarters: List[QuarterResult], outpath: Path):
+def render_equity_curves(quarters: list[QuarterResult], outpath: Path):
     width, height, pad = 800, 400, 40
     colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
     svg = [_svg_header(width, height)]
@@ -110,7 +108,7 @@ def render_equity_curves(quarters: List[QuarterResult], outpath: Path):
 
 
 def render_bar_chart(
-    quarters: List[QuarterResult],
+    quarters: list[QuarterResult],
     get_value,
     title: str,
     outpath: Path,
@@ -141,16 +139,12 @@ def render_bar_chart(
         bottom_y = pad + (1 - (min(v, 0) - vmin) / rng) * (height - 2 * pad)
         bar_h = abs(bottom_y - top_y)
         y = min(top_y, bottom_y)
-        svg.append(
-            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="{bar_h:.1f}" fill="{colors[i%len(colors)]}" rx="4" />'
-        )
+        svg.append(f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="{bar_h:.1f}" fill="{colors[i%len(colors)]}" rx="4" />')
         # Labels
         svg.append(
             f'<text x="{x + bar_w/2}" y="{y - 6:.1f}" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">{value_fmt.format(v=v)}</text>'
         )
-        svg.append(
-            f'<text x="{x + bar_w/2}" y="{height - pad + 18}" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#555">{q.name}</text>'
-        )
+        svg.append(f'<text x="{x + bar_w/2}" y="{height - pad + 18}" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#555">{q.name}</text>')
 
     svg.append(_svg_footer())
     outpath.write_text("".join(svg), encoding="utf-8")
@@ -178,4 +172,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

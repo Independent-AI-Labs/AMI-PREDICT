@@ -2,8 +2,8 @@
 Simulation engine module
 """
 
+from .data_feed import SimulatedDataFeed
 from .engine import SimulationEngine
 from .market_simulator import MarketSimulator
-from .data_feed import SimulatedDataFeed
 
-__all__ = ['SimulationEngine', 'MarketSimulator', 'SimulatedDataFeed']
+__all__ = ["SimulationEngine", "MarketSimulator", "SimulatedDataFeed"]

@@ -31,7 +31,7 @@ Successfully built a comprehensive cryptocurrency scalping system with Intel XPU
 - **Intel Arc A770 Support**: Dual GPUs with 31.2GB VRAM
 - **PyTorch 2.8.0+xpu**: Native XPU support
 - **4-5x Speedup**: Compared to CPU baseline
-- **Redis Integration**: 172.72.72.2 for caching
+- **Redis Integration**: configurable via `REDIS_HOST` (default `127.0.0.1`)
 - **ONNX Export**: Model quantization ready
 
 ### ✅ Phase 7: Benchmarking (80%)

@@ -3,7 +3,7 @@ Core infrastructure modules for CryptoBot Pro
 """
 
 from .config_manager import ConfigManager
-from .logger import Logger
 from .database import Database
+from .logger import Logger
 
-__all__ = ['ConfigManager', 'Logger', 'Database']
+__all__ = ["ConfigManager", "Logger", "Database"]

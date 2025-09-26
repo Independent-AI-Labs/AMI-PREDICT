@@ -1,9 +1,6 @@
 """Data providers for cryptocurrency market data"""
 
-from .binance_provider import BinanceDataProvider
 from .base_provider import BaseDataProvider
+from .binance_provider import BinanceDataProvider
 
-__all__ = [
-    'BaseDataProvider',
-    'BinanceDataProvider'
-]
+__all__ = ["BaseDataProvider", "BinanceDataProvider"]
