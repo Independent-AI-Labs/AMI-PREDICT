@@ -1,8 +1,8 @@
 # Predict Domain (Research)
 
-The Predict domain is retained as historical research exploring trading-focused
-workflows. It does not conform to the current `/base` design patterns and is not
-part of the supported orchestrator surface.
+Predict preserves our early experiments in trading and market-automation agents so future teams can mine the insights without reviving unsupported code paths. It captures what we learned about orchestrating financial workflows, even though the implementation predates current `/base` patterns.
+
+## Current Guidance
 
 - All legacy documentation and experiment logs now live under `research/`.
 - Reuse any code here only after refactoring it to follow Base conventions
